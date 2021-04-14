@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-04 12:38:01
- * @LastEditTime: 2021-04-05 13:49:06
+ * @LastEditTime: 2021-04-08 22:12:29
  * @FilePath: /webpack5-ts-pages/scripts/plugins.js
  */
 const webpack = require('webpack')
@@ -25,9 +25,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 // 将CSS提取为独立的文件的插件，对每个包含css的js文件都会创建一个CSS文件，
 // 支持按需加载css和sourceMap异步加载,不重复编译，性能好
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {
-  TypedCssModulesPlugin
-} = require('typed-css-modules-webpack-plugin')
+// const {
+//   TypedCssModulesPlugin
+// } = require('typed-css-modules-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
@@ -45,9 +45,9 @@ const basePlugins = [
   // 注入全局变量
   new webpack.DefinePlugin(defineEnv),
   // 用于为TypeScript+CSS模块项目生成TypeScript类型声明。该插件在编译阶段之前生成与相应的.css文件位于同一位置的.css.d.ts文件，以便在TypeScript源代码中检查所有css导入。
-  new TypedCssModulesPlugin({
-    globPattern: 'src/**/*.less'
-  }),
+  // new TypedCssModulesPlugin({
+  //   globPattern: 'src/**/*.less'
+  // }),
   // 多进程方案：对ts进行类型检查fork一个进程进行检查，并设置async为false，将错误信息反馈给webpack
   new ForkTsCheckerWebpackPlugin({
     typescript: {

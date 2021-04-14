@@ -1,8 +1,8 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-04 18:48:21
- * @LastEditTime: 2021-04-05 11:13:30
- * @FilePath: /react-ts-pages/src/index/views/Home/index.tsx
+ * @LastEditTime: 2021-04-12 23:05:01
+ * @FilePath: /webpack5-ts-pages/src/index/views/Home/index.tsx
  */
 
 import React from 'react'
@@ -11,7 +11,10 @@ import img404 from '@/index/assets/images/404.png'
 import bgBanner from '@/index/assets/images/bg_banner.png'
 // import svgTest from '@/index/assets/svg/test.svg'
 
+import store from '@/index/store'
+
 function home() {
+  console.log(store.getState())
   return (
     <div>
       index

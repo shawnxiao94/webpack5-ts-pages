@@ -5,6 +5,6 @@
  * @Description: 自定义配置主题色
  */
 module.exports = {
-  'primary-color': 'black',
+  'primary-color': '#409eff',
   'border-radius-base': '10px'
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-04 12:17:00
- * @LastEditTime: 2021-04-05 13:49:29
+ * @LastEditTime: 2021-04-13 10:14:18
  * @FilePath: /webpack5-ts-pages/scripts/config.js
  */
 
@@ -56,6 +56,7 @@ module.exports = {
     // 页面标题
     index: 'webpack5-ts-pages'
   },
+  isMock: true, // 是否mock数据
   //  如果配置了cdn那对应externals也要配置
   externals: {
     // 'react': 'React',

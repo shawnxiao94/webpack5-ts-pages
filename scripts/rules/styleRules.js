@@ -1,15 +1,16 @@
 /*
  * @Author: your name
  * @Date: 2020-12-10 10:55:28
- * @LastEditTime: 2021-04-05 11:19:48
+ * @LastEditTime: 2021-04-06 11:43:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /react-ts-pages/scripts/rules/styleRules.js
+ * @FilePath: /webpack5-ts-pages/scripts/rules/styleRules.js
  */
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = require('../config')
 const {
+  // eslint-disable-next-line no-unused-vars
   resolve
 } = require('../utils')
 const theme = require('../theme')
@@ -32,9 +33,9 @@ const sassLoader = {
   options: {
     sassOptions: {
       // 此配置后页面直接引入scss无需路径
-      includePaths: [require('bourbon').includePaths,
-        resolve('src/assets/styles')
-      ]
+      // includePaths: [require('bourbon').includePaths,
+        // resolve('src/assets/styles')
+      // ]
     }
     // 或者这样配置
     // includePaths: [resolve('src/assets/styles')]
@@ -71,18 +72,18 @@ const baseLoaders = (modules) => [
 
 module.exports = [{
     test: /\.css$/,
-    include: [resolve('node_modules')],
+    // include: [resolve('src')],
     use: baseLoaders(false)
   },
   {
     test: /\.scss$/,
-    include: [resolve('src')],
+    // include: [resolve('src')],
     use: [...baseLoaders(true), sassLoader]
   },
   {
     // for ant design
     test: /\.less$/,
-    include: [resolve('src')],
+    // include: [resolve('src')],
     // less do not use threadLoader
     // https://github.com/webpack-contrib/thread-loader/issues/10
     use: [...baseLoaders(false), lessLoader]

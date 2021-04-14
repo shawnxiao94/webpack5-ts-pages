@@ -1,4 +1,4 @@
-/node_nodules
+node_nodules
 /dist
 /src/**/*.scss.d.ts
 /src/**/*.less.d.ts

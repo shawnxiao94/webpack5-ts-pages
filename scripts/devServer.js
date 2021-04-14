@@ -1,13 +1,19 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-04 12:43:37
- * @LastEditTime: 2021-04-05 11:16:58
- * @FilePath: /react-ts-pages/scripts/devServer.js
+ * @LastEditTime: 2021-04-13 10:16:57
+ * @FilePath: /webpack5-ts-pages/scripts/devServer.js
  */
+const {
+  isMock
+} = require('./config')
+// 引入mock.js
+const Mock = require('../mock/index.js')
+
 module.exports = {
   contentBase: '../dist',
   host: 'localhost',
-  port: 3000,
+  port: 9527,
   // 非hash路由模式时解决刷新页面404问题，=> 重定向index.html页面
   historyApiFallback: true,
   open: true,
@@ -19,6 +25,13 @@ module.exports = {
   hot: true, // 热更新，修改代码后，不刷新整个页面
   progress: true, // 编译的进度条
   compress: true, // 自动压缩
+  // eslint-disable-next-line no-unused-vars
+  after (app) {
+    // do fancy stuff
+    if (isMock) {
+      Mock(app)
+    }
+  },
   proxy: {
     '/project': {
       target: 'http://127.0.0.1:8888',
@@ -28,10 +41,10 @@ module.exports = {
       ws: true,
       changeOrigin: true // 突破网站对爬虫的限制, 一般都要开启
     },
-    '/api': {
-      target: 'http://localhost:5000', // 代理 mock 服务的请求, 相当于是 /api 开头的全部匹配到 http://localhost:5000/api
+    '/react-ant-admin-api': {
+      target: 'https://www.landluck.com.cn/react-ant-admin-api', // 代理 mock 服务的请求, 相当于是 /api 开头的全部匹配到 http://localhost:5000/api
       pathRewrite: {
-        '^/api': '/'
+        '^/react-ant-admin-api': '/'
       },
       ws: true,
       changeOrigin: true
