@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-12 13:50:55
- * @LastEditTime: 2021-04-12 13:51:02
+ * @LastEditTime: 2021-04-16 14:24:47
  * @FilePath: /webpack5-ts-pages/src/index/Layout/components/TransitionMain/index.tsx
  */
 import React from 'react'
@@ -15,13 +15,15 @@ interface TransitionMainProps {
 function TransitionMain({ children }: TransitionMainProps) {
   return (
     <Route
-      render={({ location }) => (
-        <TransitionGroup className="layout__route">
-          <CSSTransition key={location.pathname} classNames="layout__route" timeout={300}>
-            <Switch location={location}>{children}</Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      )}
+      render={({ location }) => {
+        return (
+          <TransitionGroup className="layout__route">
+            <CSSTransition key={location?.pathname} classNames="layout__route" timeout={300}>
+              <Switch location={location}>{children}</Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )
+      }}
     ></Route>
   )
 }

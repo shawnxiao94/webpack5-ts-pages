@@ -1,14 +1,14 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-11 11:42:38
- * @LastEditTime: 2021-04-14 15:37:57
+ * @LastEditTime: 2021-04-15 18:06:31
  * @FilePath: /webpack5-ts-pages/src/index/store/app/actionCreators.tsx
  */
 import * as constants from './constants'
-import { IRoute } from '../../router/config'
+// import { IRoute } from '../../router/config'
 import { Modal } from 'antd'
 
-import {AppState} from './reducer'
+import {AppState, AllAuthName} from './reducer'
 
 import * as request from '@/index/apis/App'
 
@@ -17,9 +17,9 @@ export const updateSideBar = (sidebar: AppState['sidebar']) => ({
   payload: sidebar
 })
 
-export const setSideBarRoutes = (routes: IRoute[]) => ({
+export const setSideBarRoutes = (data:AllAuthName) => ({
   type: constants.SET_SIDE_BAR_ROUTES,
-  payload: routes
+  payload: data
 })
 
 export const clearSideBarRoutes = () => ({
@@ -30,8 +30,16 @@ export const clearSideBarRoutes = () => ({
 export const getMenuList:any = () => {
   return (dispatch:any) => {
     request.getMenuList({}).then((res:any) => {
-      if (res?.data?.list?.length){
-        dispatch(setSideBarRoutes(res.data.list))
+      if (res?.data && res?.data?.routeKeyArr?.length){
+        dispatch(setSideBarRoutes(res.data))
+      } else {
+        Modal.error({
+          title: '温馨提示！',
+          content: '您暂无权限，请联系管理员！',
+          okText: '确定',
+          onOk() {
+          }
+        })
       }
     }).catch((err) => {
       Modal.error({

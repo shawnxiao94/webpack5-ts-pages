@@ -1,11 +1,15 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-05 15:22:19
- * @LastEditTime: 2021-04-14 22:49:55
+ * @LastEditTime: 2021-04-16 12:15:52
  * @FilePath: /webpack5-ts-pages/src/index/router/config.ts
  */
 import React from 'react'
 
+interface IRouteAuthBtn {
+  code: string;
+  name: string
+}
 export interface IRouteBase {
   // 路由路径
   path: string;
@@ -23,6 +27,7 @@ export interface IRouteBase {
 export interface IRouteMeta {
   title: string;
   icon?: string;
+  btnAuth?:IRouteAuthBtn[]
 }
 
 export interface IRoute extends IRouteBase {
@@ -59,7 +64,7 @@ const routes: IRoute[] = [
     name: 'Home',
     component: React.lazy(() => import('../Layout/index')),
     meta: {
-      title: '系统'
+      title: '后台管理系统'
     },
     redirect: '/home',
     children: [
@@ -78,6 +83,49 @@ const routes: IRoute[] = [
         meta: {
           title: 'Dashboard'
         }
+      },
+      // 系统管理
+      {
+        path: '/system',
+        name: 'SystemManage',
+        meta: {
+          title: '系统管理'
+        },
+        redirect: '/system/user',
+        children: [
+          {
+            path: '/system/user',
+            name: 'SystemManageUser',
+            component: React.lazy(() => import('../views/System/UserManage/index')),
+            meta: {
+              title: '人员管理'
+            }
+          },
+          {
+            path: '/system/role',
+            name: 'SystemManageRole',
+            component: React.lazy(() => import('../views/System/RoleManage/index')),
+            meta: {
+              title: '角色管理'
+            }
+          },
+          {
+            path: '/system/log',
+            name: 'SystemManageLog',
+            component: React.lazy(() => import('../views/System/LogManage/index')),
+            meta: {
+              title: '日志管理'
+            }
+          },
+          {
+            path: '/system/auth',
+            name: 'SystemManageAuth',
+            component: React.lazy(() => import('../views/System/AuthManage/index')),
+            meta: {
+              title: '角色管理'
+            }
+          }
+        ]
       },
       // 以下的路由改动请小心，涉及权限校验模块
       {
@@ -109,7 +157,7 @@ const routes: IRoute[] = [
         ]
       },
       {
-        path: '/*',
+        path: '*',
         name: 'Error/*',
         meta: {
           title: '错误页面'

@@ -1,8 +1,8 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-04 12:11:23
- * @LastEditTime: 2021-04-05 12:36:53
- * @FilePath: /react-ts-pages/scripts/webpack.config.js
+ * @LastEditTime: 2021-04-16 13:58:45
+ * @FilePath: /webpack5-ts-pages/scripts/webpack.config.js
  */
 const entry = require('./entry')
 const constants = require('./constants')
@@ -37,6 +37,8 @@ module.exports = {
     extensions: constants.FILE_EXTENSIONS,
     // 别名
     alias: {
+      // 解决报错提示react-🔥-dom patch is not detected,dev环境安装@hot-loader/react-dom并配置如下
+      'react-dom': '@hot-loader/react-dom',
       '@/*': ['src/*'],
       '@': resolve('src'),
       '@index': resolve('src/index')

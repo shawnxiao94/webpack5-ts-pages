@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2020-12-11 10:15:21
- * @LastEditTime: 2021-04-10 22:38:45
+ * @LastEditTime: 2021-04-14 23:24:07
  * @FilePath: /webpack5-ts-pages/src/index/App.tsx
  */
 
@@ -16,7 +16,6 @@ import { layoutRouteList } from './router/utils'
 import config from './config'
 
 function App() {
-  console.log(layoutRouteList)
   return (
     <Suspense fallback={<Spin size="large" className="layout__loading" />}>
       <Router basename={config.BASENAME}>

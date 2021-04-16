@@ -1,23 +1,26 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-11 16:53:41
- * @LastEditTime: 2021-04-11 17:15:38
+ * @LastEditTime: 2021-04-16 11:07:41
  * @FilePath: /webpack5-ts-pages/src/index/Layout/index.tsx
  */
 import React, { Suspense } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import Sidebar from './components/LayoutSideBar'
-import Header from './components/LayoutHeader'
+import LayoutHeader from './components/LayoutHeader'
 import { Spin } from 'antd'
 import LayoutSettings from './components/LayoutSettings'
 import MainRoutes from './MainRoutes'
+import './index.less'
 
+import { Settings } from '@/index/store/settings/reducer'
+import { IStoreState } from '@/index/store/types'
 interface LayoutProps {
-  layout: string;
+  layout: Settings['layout'];
   colorWeak: boolean;
   fixedHeader: boolean;
-  contentWidth: string;
+  contentWidth: Settings['contentWidth'];
 }
 
 export const Layout = (props: LayoutProps) => {
@@ -32,7 +35,7 @@ export const Layout = (props: LayoutProps) => {
       >
         {props.layout === 'side' && <Sidebar />}
         <section className={classnames('layout__main')}>
-          <Header />
+          <LayoutHeader />
           <div
             className={classnames('layout__container', {
               'layout__container--fix': props.fixedHeader,
@@ -50,8 +53,11 @@ export const Layout = (props: LayoutProps) => {
   )
 }
 
-const mapStateToProps = () => ({
-  
+const mapStateToProps = ({ settings: { layout, colorWeak, fixedHeader, contentWidth } }: IStoreState) => ({
+  layout,
+    colorWeak,
+    fixedHeader,
+    contentWidth
 })
 
 const mapDispatchToProps = {

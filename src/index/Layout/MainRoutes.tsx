@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-11 17:14:44
- * @LastEditTime: 2021-04-11 17:21:21
+ * @LastEditTime: 2021-04-16 12:32:20
  * @FilePath: /webpack5-ts-pages/src/index/Layout/MainRoutes.tsx
  */
 import React, { useMemo, memo } from 'react'
@@ -45,7 +45,6 @@ function renderRouteList(): React.ReactNode[] {
 
 function MainRoutes() {
   const routeList = useMemo(() => renderRouteList(), [])
-
   return <AsyncRoutes>{routeList}</AsyncRoutes>
 }
 

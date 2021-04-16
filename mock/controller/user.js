@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-13 21:17:49
- * @LastEditTime: 2021-04-13 23:04:27
+ * @LastEditTime: 2021-04-16 11:13:16
  * @FilePath: /webpack5-ts-pages/mock/controller/user.js
  */
 module.exports = [
@@ -26,7 +26,7 @@ module.exports = [
       message: 'success',
       data: {
         name: 'shawnxiao',
-        avatar: 'avatar_url',
+        avatar: '',
         account: 'account',
         mobile: 'mobile',
         role: 'role',

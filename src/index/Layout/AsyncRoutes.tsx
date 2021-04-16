@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-11 20:26:52
- * @LastEditTime: 2021-04-14 15:13:15
+ * @LastEditTime: 2021-04-16 12:42:40
  * @FilePath: /webpack5-ts-pages/src/index/Layout/AsyncRoutes.tsx
  */
 import React, { memo } from 'react'
@@ -59,7 +59,6 @@ function AsyncRoutes(props: AsyncRoutesProps) {
     }
     return <Spin className="layout__loading" />
   }
-
   return <TransitionMain>{props.children}</TransitionMain>
 }
 

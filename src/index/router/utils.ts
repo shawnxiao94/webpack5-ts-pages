@@ -1,11 +1,12 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-06 10:08:36
- * @LastEditTime: 2021-04-14 18:39:55
+ * @LastEditTime: 2021-04-16 11:56:10
  * @FilePath: /webpack5-ts-pages/src/index/router/utils.ts
  */
 import routes, { IRoute } from './config'
 import config from '../config'
+import {AllAuthName} from '@/index/store/app/reducer'
 
 /**
  *
@@ -39,7 +40,6 @@ function getLayoutRouteList(): IRoute[] {
 
 function getBusinessRouteList(): IRoute[] {
   const routeList = routes.filter(route => route.path === '/')
-
   if (routeList.length > 0) {
     return flattenRoute(routeList, true, true)
   }
@@ -110,4 +110,33 @@ export function getAuthFlattenRoute(arr:string[]): IRoute[] {
     res.push(businessRouteList.find(item => item.name.includes(name)) as IRoute)
   })
   return res
+}
+
+// 依据路由name数组和按钮name数组 过滤动态路由
+export function filterRoutersByNameArr(routes:IRoute[], data:AllAuthName) {
+  const { routeKeyArr, btnKeyArr } = data
+  function loopFilterFn(routes:IRoute[]) {
+    // 递归调用过滤
+    return routes.filter(item => {
+      if (item?.children && item?.children?.length) {
+        item.children = loopFilterFn(item.children)
+        item.children = item.children.filter(subItem => {
+          if (
+            subItem?.meta &&
+            subItem?.meta?.btnAuth &&
+            subItem?.meta?.btnAuth?.length
+          ) {
+            subItem.meta.btnAuth = subItem.meta.btnAuth.filter(
+              itemChild => {
+                return btnKeyArr?.includes(itemChild?.code)
+              }
+            )
+          }
+          return routeKeyArr.includes(subItem.name)
+        })
+      }
+      return routeKeyArr.includes(item.name)
+    })
+  }
+  return loopFilterFn(routes)
 }

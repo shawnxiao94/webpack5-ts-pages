@@ -1,17 +1,22 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-11 11:42:48
- * @LastEditTime: 2021-04-14 18:40:47
+ * @LastEditTime: 2021-04-16 12:11:57
  * @FilePath: /webpack5-ts-pages/src/index/store/app/reducer.tsx
  */
 import { Reducer } from 'redux'
 import { IAction } from '../types'
+// import routes from '../../router/config'
 import { IRoute } from '../../router/config'
-import { getAuthFlattenRoute } from '../../router/utils'
+import { getAuthFlattenRoute, filterRoutersByNameArr, businessRouteList } from '../../router/utils'
 import { getStorage, setStorage } from '@/common/utils/storage'
 
 import * as constants from './constants'
 
+export interface AllAuthName {
+  routeKeyArr:string[];
+  btnKeyArr?:string[]
+}
 export interface AppState {
   sidebar: {
     opened: boolean;
@@ -43,8 +48,8 @@ const reducer: Reducer<AppState, IAction<any>> = (state = defaultState, action: 
     case constants.SET_SIDE_BAR_ROUTES:
       return {
         ...state,
-        routes: payload,
-        flattenRoutes: getAuthFlattenRoute(payload),
+        routes: filterRoutersByNameArr(businessRouteList[0].children as IRoute[], payload),
+        flattenRoutes: getAuthFlattenRoute(payload.routeKeyArr),
         // flattenRoutes: flattenRoute(payload, true, false),
         init: true
       }
