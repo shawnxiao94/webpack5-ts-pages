@@ -1,14 +1,55 @@
 @import 'antd/dist/antd.less';
-@import './common/reset.css';
+/** 公共样式 **/
+@import "normalize.css";
 @import './common/transition.less';
 @import './var.less';
 
+  
+/* 全局配置 */
+
+* {
+  -webkit-overflow-scrolling: touch; /* 允许独立滚动区域，解决IOS上的非body元素滚动条滚动时卡顿 */
+  -webkit-tap-highlight-color: transparent; /* 覆盖IOS上用户点击连接时的默认高亮颜色 */
+  outline: none;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* 禁止换行,末尾省略 */
+.all_nowarp {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 强制换行 */
+.all_warp {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.all_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 美化滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  background-color: #333;
 }
 
 code {

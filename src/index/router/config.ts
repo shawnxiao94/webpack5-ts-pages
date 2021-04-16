@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-05 15:22:19
- * @LastEditTime: 2021-04-16 12:15:52
+ * @LastEditTime: 2021-04-16 17:13:52
  * @FilePath: /webpack5-ts-pages/src/index/router/config.ts
  */
 import React from 'react'
@@ -27,6 +27,8 @@ export interface IRouteBase {
 export interface IRouteMeta {
   title: string;
   icon?: string;
+  cache?: boolean;
+  hidden?: boolean;
   btnAuth?:IRouteAuthBtn[]
 }
 
@@ -81,7 +83,9 @@ const routes: IRoute[] = [
         name: 'Dashboard',
         component: React.lazy(() => import('../views/Dashboard/index')),
         meta: {
-          title: 'Dashboard'
+          title: 'Dashboard',
+          cache: true,
+          hidden: false
         }
       },
       // 系统管理

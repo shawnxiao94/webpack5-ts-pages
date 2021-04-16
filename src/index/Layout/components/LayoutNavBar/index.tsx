@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-11 17:09:09
- * @LastEditTime: 2021-04-16 10:38:11
+ * @LastEditTime: 2021-04-16 15:50:56
  * @FilePath: /webpack5-ts-pages/src/index/Layout/components/LayoutNavBar/index.tsx
  */
 import React, {memo, useCallback} from 'react'
@@ -39,7 +39,7 @@ const LayoutNavBar = ({ sidebar, ActionUpdateSideBar, layout, theme }: LayoutNav
     })
   }, [sidebar, ActionUpdateSideBar])
   const onHelpItemClick = useCallback(() => {
-    window.open('https://github.com/landluck/react-ant-admin')
+    window.open('https://github.com/shawnxiao94/webpack5-ts-pages')
   }, [])
   return (
     <div className="layout__navbar">

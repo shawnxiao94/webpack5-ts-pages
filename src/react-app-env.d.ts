@@ -1,7 +1,7 @@
 /*
  * @Author: shawnxiao
  * @Date: 2021-04-04 13:53:19
- * @LastEditTime: 2021-04-06 10:59:05
+ * @LastEditTime: 2021-04-16 17:04:42
  * @FilePath: /webpack5-ts-pages/src/react-app-env.d.ts
  */
 // / <reference types="node" />
@@ -14,6 +14,8 @@ declare namespace NodeJS {
     readonly PUBLIC_URL: string;
   }
 }
+
+declare module 'react-keepalive-router'
 
 declare module Window {
   const src: string;
